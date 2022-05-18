@@ -34,7 +34,9 @@ router.post('/:authorId/:postId', async (req, res) => {
      body,
     } = req.body;
     const comment = Comment.create({
-        body: body,
+      body: body,
+      post: post,
+      author: author,
     });
     await comment.save()
     return res.json (comment)

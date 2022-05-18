@@ -13,7 +13,7 @@ import {
 import { User } from "./user";
 import { Tag } from "./tag";
 import { Comment } from "./comment";
-
+import { Likes } from "./likes";
 @Entity("post")
 export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -35,7 +35,8 @@ export class Post extends BaseEntity {
     name: "author_id",
   })
   author: User;
-
+  @OneToMany(() => Likes, (likes) => likes.post)
+  likes: Likes[];
   @ManyToMany(() => Tag , tag => tag.posts,{cascade: true})
   tags: Tag[]
     
